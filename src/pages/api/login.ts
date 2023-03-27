@@ -6,6 +6,7 @@ export default (
 ) => {
     if (req.method === 'POST') {
         const { login, senha } = req.body;
+        
         if (login === 'admin@admin.com' &&
             senha === "admin@123") {
             res.status(200).json({ msg: "Usuário autenticado com sucesso" })
