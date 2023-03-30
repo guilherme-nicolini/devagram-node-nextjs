@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { conectarMongoDb } from '../../../middlewares/conectarMongoDb';
-import { RespostaPadraoMsg } from '../../../types/respostaPadraoMsg';
+import { conectarMongoDb } from '../../middlewares/conectarMongoDb';
+import { RespostaPadraoMsg } from '../../types/RespostaPadraoMsg';
+
 const endpointLogin = (
     req: NextApiRequest,
     res: NextApiResponse<RespostaPadraoMsg>

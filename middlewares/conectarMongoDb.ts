@@ -1,8 +1,7 @@
 import type { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
 import mongoose from 'mongoose';
-import type { respotaPadraoMsg } from './types/respostaPadraoMsg';
-
-export const conectarMongoDb = (handler: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse<respotaPadraoMsg>) => {
+import type { RespostaPadraoMsg } from '../types/RespostaPadraoMsg';
+export const conectarMongoDb = (handler: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse<RespostaPadraoMsg>) => {
 
     // verificar se o bd ja esta conectado, se estiver seguir para ou endpoint ou próximo midlleware assim :
    if(mongoose.connections[0].readyState) {
