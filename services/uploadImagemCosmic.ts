@@ -1,16 +1,16 @@
 import multer from "multer";
 import cosmicjs from "cosmicjs";
 const {
-    CHAVE_GRAVACAO_AVATERES,
+    CHAVE_GRAVACAO_AVATARES,
     CHAVE_GRAVACAO_PUBLICACOES,
     BUCKET_AVATARES,
     BUCKET_PUBLICACOES
-} = process.env;
+} = process.env
 
 const Cosmic = cosmicjs();
 const bucketAvatares = Cosmic.bucket({
     slug: BUCKET_AVATARES,
-    write_key: CHAVE_GRAVACAO_AVATERES
+    write_key: CHAVE_GRAVACAO_AVATARES
 });
 
 const bucketPublicacoes = Cosmic.bucket({
@@ -24,7 +24,7 @@ const upload = multer({ storage: storage });
 const uploadImagemCosmic = async (req: any) => {
     if (req?.file.originalname) {
         const media_object = {
-            orinalName: req.file.originalname,
+            originalname: req.file.originalname,
             buffer: req.file.buffer
         };
 
