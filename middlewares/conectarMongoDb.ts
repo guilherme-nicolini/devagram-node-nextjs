@@ -17,7 +17,7 @@ export const conectarMongoDb = (handler: NextApiHandler) => async (req: NextApiR
         return res.status(500).json({ erro: 'Env de configuração do banco de dados, não informado' })
     }
 
-    mongoose.connection.on('connected', () => console.log('Banco de dados conectado'))
+    mongoose.connection.on('connected', () => console.log('Banco de dados conectado 🤘'))
     mongoose.connection.on('error', error => console.log(`Ocorreu um erro ao conectar ao banco de dados: ${error}`));
 
     await mongoose.connect(DB_CONEXAO_STRING);

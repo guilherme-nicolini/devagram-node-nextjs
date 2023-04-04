@@ -12,26 +12,29 @@ const handler = nc()
     .post(async (req: NextApiRequest, res: NextApiResponse<RespostaPadraoMsg>) => {
 
         const usuario = req.body as CadastroRequisicao;
-
+        
         if (!usuario.nome || usuario.nome.length < 2) {
             return res.status(400).json({ erro: 'Nome invalido' });
+            console.log(usuario)
         }
 
         if (!usuario.email || usuario.email.length < 5
             || !usuario.email.includes('@')
             || !usuario.email.includes('.')) {
             return res.status(400).json({ erro: 'Email invalido' });
+            
         }
 
         if (!usuario.senha || usuario.senha.length < 4) {
             return res.status(400).json({ erro: 'Senha invalida' });
+            
         }
 
         // Validação ja existe usuario com o mesmo email 
 
         const usuarioComMesmoEmail = await UsuarioModel.find({ email: usuario.email });
         if (usuarioComMesmoEmail && usuarioComMesmoEmail.length > 0) {
-            return res.status(400).json({ erro: `ja existe uma conta com o email informado` });
+            return res.status(400).json({ erro: 'ja existe uma conta com o email informado ' });
         }
 
         // enviar a imagem do multer para o cosmic
