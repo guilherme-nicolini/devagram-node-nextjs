@@ -15,7 +15,7 @@ const handler = nc()
         
         if (!usuario.nome || usuario.nome.length < 2) {
             return res.status(400).json({ erro: 'Nome invalido' });
-            console.log(usuario)
+           
         }
 
         if (!usuario.email || usuario.email.length < 5
@@ -47,6 +47,7 @@ const handler = nc()
             senha: md5(usuario.senha),
             avatar: image?.media?.url
         }
+        console.log(usuarioASerSalvo)
         await UsuarioModel.create(usuarioASerSalvo);
         return res.status(200).json({ msg: 'Usuário criado com sucesso' });
 

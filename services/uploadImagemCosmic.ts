@@ -27,7 +27,7 @@ const uploadImagemCosmic = async (req: any) => {
             originalname: req.file.originalname,
             buffer: req.file.buffer
         };
-
+    
         if (req.url && req.url.includes('publicacao')) {
             return await bucketPublicacoes.addMedia({ media: media_object });
         } else {
@@ -37,4 +37,5 @@ const uploadImagemCosmic = async (req: any) => {
     }
 }
 
-export{upload,uploadImagemCosmic};
+export{upload, uploadImagemCosmic};
+
