@@ -4,7 +4,7 @@ import nc from 'next-connect';
 import { upload, uploadImagemCosmic } from "../../services/uploadImagemCosmic";
 import { conectarMongoDb } from "../../middlewares/conectarMongoDb";
 import { validarTokenJWT } from "../../middlewares/validarTokenJWT";
-import { PublicacaoModel } from "../../models/publicacaoModel";
+import { PublicacaoModel } from "../../models/PublicacaoModel";
 import { UsuarioModel } from "../../models/UsuarioModel";
 
 const handler = nc()

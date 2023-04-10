@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse, NextApiHandler } from "next";
 import type { RespostaPadraoMsg } from "../types/RespostaPadraoMsg";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { trace } from "console";
 
-export const validarTokenJWT = (handler: NextApiHandler) => (req: NextApiRequest, res: NextApiResponse<RespostaPadraoMsg>) => {
+
+export const validarTokenJWT = (handler: NextApiHandler) => (req: NextApiRequest, res: NextApiResponse<RespostaPadraoMsg | any[]>) => {
 
     try {
         const { MINHA_CHAVE_JWT } = process.env;
@@ -12,24 +12,24 @@ export const validarTokenJWT = (handler: NextApiHandler) => (req: NextApiRequest
         }
 
         if (!req || !req.headers) {
-            return res.status(401).json({ erro: "Não foi possivel Validar o token de acesso" });
+            return res.status(401).json({ erro: "Não foi possivel Validarggg o token de acesso" });
 
         }
 
         if (req.method !== "OPTIONS") {
             const authorization = req.headers["authorization"];
             if (!authorization) {
-                return res.status(401).json({ erro: "Não foi possivel validar o token de acesso" });
+                return res.status(401).json({ erro: "Não foi possivel validarrrr o token de acesso" });
             }
 
             const token = authorization.substring(7);
             if (!token) {
-                return res.status(401).json({ erro: "Não foi possivel validar o token de acesso" });
+                return res.status(401).json({ erro: "Não foi possivel validarpppp o token de acesso" });
             }
 
             const decoded = jwt.verify(token, MINHA_CHAVE_JWT) as JwtPayload;
             if (!decoded) {
-                return res.status(401).json({ erro: "Não foi possivel validar o token de acesso" });
+                return res.status(401).json({ erro: "Não foi possivel validarjjjj o token de acesso" });
             }
 
             if (!req.query) {
@@ -42,7 +42,7 @@ export const validarTokenJWT = (handler: NextApiHandler) => (req: NextApiRequest
 
     } catch (e) {
         console.log(e);
-        return res.status(401).json({ erro: "Não foi possivel validar o token de acesso" });
+        return res.status(401).json({ erro: "Não foi possivelhhh validar o token de acesso" });
     }
 
 
