@@ -8,16 +8,27 @@ import { UsuarioModel } from "../../models/UsuarioModel";
 const pesquisaEndPOint = async (req: NextApiRequest, res: NextApiResponse<RespostaPadraoMsg | any[]>) => {
     try {
         if (req.method === 'GET') {
-            const { filtro } = req.query;
-            if (!filtro || filtro.length < 2) {
-                return res.status(400).json({ erro: 'Informar pelo menos 2 caracteres para a busca ' });
+
+            if (req?.query?.id) {
+                const usuariosEncontrado = await UsuarioModel.findById(req?.query?.id)
+                if (!usuariosEncontrado) {
+                    return res.status(400).json({ erro: 'Usuario não encontrado' });
+                }
+                usuariosEncontrado.senha = null
+                return res.status(200).json(usuariosEncontrado);
+            } else {
+                const { filtro } = req.query;
+                if (!filtro || filtro.length < 2) {
+                    return res.status(400).json({ erro: 'Informar pelo menos 2 caracteres para a busca ' });
+                }
+
+                const usuariosEncontrado = await UsuarioModel.find({
+                    $or: [{ nome: { $regex: filtro, $options: 'i' } },
+                    { email: { $regex: filtro, $options: 'i' } }]
+                });
+                return res.status(200).json(usuariosEncontrado)
             }
 
-            const usuariosEncontrados = await UsuarioModel.find({
-                $or: [{ nome: { $regex: filtro, $options: 'i' } },
-                      { email: { $regex: filtro, $options: 'i' } }]
-            });
-            return res.status(200).json(usuariosEncontrados)
         }
         return res.status(405).json({ erro: 'Método informado não é válido' });
     } catch (e) {
