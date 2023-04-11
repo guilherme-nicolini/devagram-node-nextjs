@@ -21,6 +21,7 @@ const pesquisaEndPOint = async (req: NextApiRequest, res: NextApiResponse<Respos
                 if (!filtro || filtro.length < 2) {
                     return res.status(400).json({ erro: 'Informar pelo menos 2 caracteres para a busca ' });
                 }
+                
 
                 const usuariosEncontrado = await UsuarioModel.find({
                     $or: [{ nome: { $regex: filtro, $options: 'i' } },
