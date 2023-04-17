@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import publicacao from "../pages/api/publicacao";
+
 
 const PublicacaoSchema = new Schema({
     idUsuario: { type: String, required: true },
